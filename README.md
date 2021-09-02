@@ -15,3 +15,5 @@ Features
 
 - Store to Buy materials(can be colors, or articles of clothing etc) to make NFTs. (this gives dave coins some use.)
 - Market Place to Trade, sell and buy the NFTs created using the materials above.
+
+# This is just an Learning Project and not production code.
