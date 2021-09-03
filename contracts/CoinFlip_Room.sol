@@ -13,7 +13,10 @@ contract CoinFlipRoom {
     bool public gameActive;
     bool public roomFull;
 
+    address public winner;
+
     address public houseAccount;
+    address public gameMaster;
 
     constructor(
         address _player1,
@@ -29,6 +32,7 @@ contract CoinFlipRoom {
         gameActive = true;
         roomFull = false;
         houseAccount = _houseAccount;
+        gameMaster = msg.sender;
     }
 
     function takeBet(address _player2) public payable returns (bool success) {
@@ -51,6 +55,7 @@ contract CoinFlipRoom {
     function pickWinner() public payable returns (bool success) {
         require(roomFull);
         require(gameActive);
+        require(msg.sender == gameMaster);
 
         uint256 winningChoice = FlipCoin();
         // House Percentage
@@ -58,8 +63,10 @@ contract CoinFlipRoom {
         payable(houseAccount).transfer(houseCut);
         if (winningChoice == player1Commitment) {
             payable(player1).transfer(pricePool - houseCut);
+            winner = player1;
         } else {
             payable(player2).transfer(pricePool - houseCut);
+            winner = player2;
         }
         pricePool = 0;
         gameActive = false;

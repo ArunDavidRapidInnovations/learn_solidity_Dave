@@ -7,12 +7,15 @@ contract DaveTokenMarket {
     // user address => market entry contract address
     mapping(address => TokenMarketEntry) MarketEntries;
 
+    constructor() {}
+
     event MarketEntryCreated(
         address _by,
         address _haveToken,
         address _wantToken,
         uint256 _haveTokenAmount,
-        uint256 _wantTokenAmount
+        uint256 _wantTokenAmount,
+        address _marketAddress
     );
 
     event MarketEntryUpdated(
@@ -20,7 +23,8 @@ contract DaveTokenMarket {
         address _haveToken,
         address _wantToken,
         uint256 _haveTokenAmount,
-        uint256 _wantTokenAmount
+        uint256 _wantTokenAmount,
+        address _marketAddress
     );
 
     event MarketEntryAccepted(address _by, address _MarketEntryAddress);
@@ -49,7 +53,8 @@ contract DaveTokenMarket {
             _haveToken,
             _wantToken,
             _haveTokenAmount,
-            _wantTokenAmount
+            _wantTokenAmount,
+            newEntry
         );
 
         return true;
@@ -77,7 +82,8 @@ contract DaveTokenMarket {
             _haveToken,
             _wantToken,
             _haveTokenAmount,
-            _wantTokenAmount
+            _wantTokenAmount,
+            _entryAddress
         );
 
         return true;

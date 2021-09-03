@@ -1,7 +1,5 @@
 pragma solidity >=0.7.4;
 
-import "./Interfaces/IERC20.sol";
-
 contract DaveToken {
     string public name = "Dave Token";
     string public symbol = "DAVE";

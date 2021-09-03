@@ -17,18 +17,7 @@ let inbox;
 const deploy = async () => {
   // Get a list of all accounts
   accounts = await web3.eth.getAccounts();
-  //   let tx = new Tx({
-  //     from: '0x187DEC17d04477AA90a8f9BC263AB40e42e29897',
-  //     to: accounts[0],
-  //     gasPrice: '0x4a717c800',
-  //     gasLimit: '0xc340',
-  //     value: '0x' + Number(web3.utils.toWei('0.1', 'ether')).toString(16),
-  //     data: '0x',
-  //   });
-  //   tx.sign(privateKey);
-  //   await web3.eth.sendSignedTransaction('0x' + tx.serialize().toString('hex'));
-  // use one of the accounts to deploy the contract
-  // console.log(evm.bytecode);
+
   inbox = await new web3.eth.Contract(abi)
     .deploy({
       data: evm.bytecode.object,
